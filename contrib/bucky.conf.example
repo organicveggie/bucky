@@ -16,6 +16,8 @@ full_trace = False
 metricsd_ip = "127.0.0.1"
 metricsd_port = 23632
 metricsd_enabled = False
+
+# The default interval between flushes of metric data to Graphite
 metricsd_default_interval = 10.0
 
 # You can specify the frequency of flushes to Graphite based on
@@ -32,8 +34,16 @@ metricsd_handlers = []
 collectd_ip = "127.0.0.1"
 collectd_port = 25826
 collectd_enabled = True
+
+# A list of file names for collectd types.db files.
 collectd_types = []
+
+# A mapping of plugin names to converter callables. These are
+# explained in more detail in the README.
 collectd_converters = {}
+
+# Whether to load converters from entry points. The entry point
+# used to define converters is 'bucky.collectd.converters'.
 collectd_use_entry_points = True
 
 # Statsd server
@@ -42,6 +52,8 @@ collectd_use_entry_points = True
 statsd_ip = "127.0.0.1"
 statsd_port = 8125
 statsd_enabled = False
+
+# How often stats should be flushed to Graphite.
 statsd_flush_time = 10.0
 
 # Graphite Client
@@ -49,9 +61,14 @@ statsd_flush_time = 10.0
 graphite_enabled = True
 graphite_ip = "127.0.0.1"
 graphite_port = 2003
+
+# If the Graphite connection fails these numbers define how it
+# will reconnect. The max reconnects applies each time a
+# disconnect is encountered and the reconnect delay is the time
+# in seconds between connection attempts. Setting max reconnects
+# to a negative number removes the limit.
 graphite_max_reconnects = 3
 graphite_reconnect_delay = 5
-
 
 # Mysql Client
 # mysql client used to push metrics into db. it only pushes metric
